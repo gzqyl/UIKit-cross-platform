@@ -186,17 +186,26 @@ extension UITouch: CustomStringConvertible {
 import JNI
 
 @_silgen_name("Java_org_libsdl_app_SDLActivity_onNativeTouch")
-public func Java_org_libsdl_app_SDLActivity_onNativeTouch(env: UnsafeMutablePointer<JNIEnv>, view: JavaObject,
-                                                          touchDeviceID: JavaInt, pointerFingerID: JavaInt, action: JavaInt,
-                                                          x: JavaFloat, y: JavaFloat, pressure: JavaFloat, timestamp: JavaDouble) {
-
+public func Java_org_libsdl_app_SDLActivity_onNativeTouch(
+    env: UnsafeMutablePointer<JNIEnv>,
+    view: JavaObject,
+    touchDeviceID: JavaInt,
+    pointerFingerID: JavaInt,
+    action: JavaInt,
+    x: JavaFloat,
+    y: JavaFloat, 
+    pressure: JavaFloat,
+    timestamp: JavaInt
+) {
     guard let eventType = SDL_EventType.eventFrom(androidAction: action) else {return}
 
+    let _timestamp = UInt32(timestamp)
+    print(_timestamp)
 
     var event = SDL_Event(tfinger:
         SDL_TouchFingerEvent(
             type: eventType.rawValue,
-            timestamp: UInt32(timestamp), // ensure this is in ms
+            timestamp: _timestamp, // ensure this is in ms
             touchId: Int64(touchDeviceID), // I think this is the "Touch Device ID" which should always be 0, but check this
             fingerId: Int64(pointerFingerID),
             x: x / Float(UIScreen.main.scale),

@@ -14,14 +14,16 @@ interface SDLOnTouchListener: View.OnTouchListener {
     var mHeight: Float
 
     fun onNativeMouse(button: Int, action: Int, x: Float, y: Float)
-    fun onNativeTouch(touchDevId: Int, pointerFingerId: Int, action: Int, x: Float, y: Float, p: Float, t: Double)
+    fun onNativeTouch(touchDevId: Int, pointerFingerId: Int, action: Int, x: Float, y: Float, p: Float, t: Int)
 
     // Touch events
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         /* Ref: http://developer.android.com/training/gestures/multi.html */
         val touchDevId = event.deviceId
         val action = event.actionMasked
-        val time = event.eventTime.toDouble()
+
+        Log.i("SDLOnTouchListener", event.eventTime.toString())
+        val time = event.eventTime.toInt()
 
 
         data class TouchValues(val fingerId: Int, val x: Float, val y: Float, val p: Float)
