@@ -3,11 +3,14 @@ package org.libsdl.app;
 public class JavaLongIntTest {
 
     public void test() {
-        long longParam = 1024; // (long) Math.pow(2.0, 50.0);
-        int intParam = 2048; // (int) Math.pow(2.0, 50.0);
-
-        testLongInt(longParam, intParam);
+        testLongInt(
+                (long) Math.pow(2.0, 50.0),
+                (int) Math.pow(2.0, 30.0),
+                1.0f,
+                2.0f,
+                1024
+        );
     }
 
-    native void testLongInt(long longParam, int intParam);
+    native void testLongInt(long longParam, int intParam, float floatParam1, float floatParam2, long otherLong);
 }

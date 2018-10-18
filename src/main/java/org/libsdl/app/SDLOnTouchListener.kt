@@ -7,9 +7,7 @@ import android.view.View
 import org.libsdl.app.JavaLongIntTest
 import org.libsdl.app.KotlinLongIntTest
 import org.libsdl.app.SDLActivity
-import java.lang.Math.pow
 import kotlin.math.min
-import kotlin.math.pow
 
 
 private const val tag: String = "SDLOnTouchListener"

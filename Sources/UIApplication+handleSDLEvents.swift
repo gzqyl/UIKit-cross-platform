@@ -185,15 +185,23 @@ extension UITouch: CustomStringConvertible {
 #if os(Android)
 import JNI
 
-@_silgen_name("Java_org_libsdl_app_JavaLongIntTest_testLongInt")
+
+
+@_cdecl("Java_org_libsdl_app_JavaLongIntTest_testLongInt")
 public func javaTestLongInt(
     env: UnsafeMutablePointer<JNIEnv>,
     view: JavaObject,
     longParam: JavaLong,
-    intParam: JavaInt
+    intParam: JavaInt,
+    floatParam1: JavaFloat,
+    floatParam2: JavaFloat,
+    otherLong: JavaLong
 ) {
     print("java longParam: ", longParam)
     print("java intParam: ", intParam)
+    print("java floatParam1: ", floatParam1)
+    print("java floatParam2: ", floatParam2)
+    print("java otherLong: ", otherLong)
 }
 
 @_silgen_name("Java_org_libsdl_app_KotlinLongIntTest_testLongInt")
@@ -201,11 +209,19 @@ public func kotlinTestLongInt(
     env: UnsafeMutablePointer<JNIEnv>,
     view: JavaObject,
     longParam: JavaLong,
-    intParam: JavaInt
+    intParam: JavaInt,
+    floatParam1: JavaFloat,
+    floatParam2: JavaFloat,
+    otherLong: JavaLong
 ) {
     print("kotlin longParam: ", longParam)
     print("kotlin intParam: ", intParam)
+    print("kotlin floatParam1: ", floatParam1)
+    print("kotlin floatParam2: ", floatParam2)
+    print("kotlin otherLong: ", otherLong)
 }
+
+
 
 @_silgen_name("Java_org_libsdl_app_SDLActivity_onNativeTouch")
 public func Java_org_libsdl_app_SDLActivity_onNativeTouch(
